@@ -1,3 +1,4 @@
+
 const output = document.getElementById("output");
 const btn = document.getElementById("download-images-button");
 const loading = document.getElementById("loading");
@@ -14,7 +15,7 @@ function downloadImage(url) {
     const img = new Image();
 
     img.onload = function() {
-      resolve(img);
+      resolve(url);
     };
 
     img.onerror = function() {
@@ -38,7 +39,9 @@ function downloadImages() {
     .then(function(downloadedImages) {
       loading.style.display = "none";
 
-      downloadedImages.forEach(function(img) {
+      downloadedImages.forEach(function(url) {
+        const img = document.createElement("img");
+        img.src = url;
         output.appendChild(img);
       });
     })
